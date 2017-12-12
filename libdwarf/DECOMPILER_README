@@ -1,0 +1,64 @@
+#
+#  What was done to libdwarf:
+#
+
+In file libdwarf/libdwarfdefs.h:
+	typedef of  __int32_t   renamed to  Dwarf__int32_t
+	typedef of  __uint32_t  renamed to  Dwarf__uint32_t
+	typedef of  __int64_t   renamed to  Dwarf__int64_t
+	typedef of  __uint64_t  renamed to  Dwarf__uint64_t
+==> affected files: dwarf_base_types.h, pro_opaque
+
+In file dwarfdump2/globals.h:
+	typedef of  __int32_t   renamed to  Dwarfdump2__int32_t
+	typedef of  __uint32_t  renamed to  Dwarfdump2__uint32_t
+	typedef of  __int64_t   renamed to  Dwarfdump2__int64_t
+	typedef of  __uint64_t  renamed to  Dwarfdump2__uint64_t
+==> affected files: print_die.cc, print_frames.cc
+
+All these occurrences were renamed, because they colide with system getopt library on windows:
+	opterr -> libdwarf_opterr
+	optind -> libdwarf_optind
+	optopt -> libdwarf_optopt
+
+#
+#  How to migrate to new version:
+#
+
+1.
+Save old config.h and .make.mki files from all libdwarf parts that were built.
+
+2.
+Replace libdwarf with new version.
+
+3.
+Make libdwarf and other parts (dwarfump2, ...) with original Makefile.
+This will build config.h and generate some sources that are needed for our build.
+
+4.
+Replace config.h files with original ones. Or at least check differences if making some changes.
+
+5.
+Add our .make.mki files. Make sure they contain all needed source files - some might be new in new release.
+Make sure used sources do not have multiple main() functions - there might be multiple programs, do not
+compile them together.
+
+6.
+Try to build it all.
+
+
+#
+#  How to add bin-interface to dwarfdump2, ...
+#
+
+1.
+bin-interface sources are in libdwarf/bin-interface/.
+Use them in all appplications, do not make separate copies - only one place to maintan/fix.
+
+2.
+To add bin-interface support to dwarfdump2 see libdwarf/bin-interface/dwarfdump.add.
+
+3.
+Add sources in libdwarf/bin-interface/ to other sources of the compiled application.
+I tried to create library from bin-interface and use it in dwarfdump2, but the same code
+that worked when compiled with other dwarfdump2 sources started to cause seg faults.
