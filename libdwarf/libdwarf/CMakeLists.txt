@@ -76,7 +76,7 @@ if(NOT TARGET libdwarf)
 		RUNTIME DESTINATION bin
 	)
 	# On Windows, DLLs need to be in unit-tests directory as well.
-	if(MSVC)
+	if(MSVC AND LIBDWARF_INSTALL_TO_UNITTESTS)
 		install(TARGETS libdwarf
 			RUNTIME DESTINATION bin/unit-tests
 		)

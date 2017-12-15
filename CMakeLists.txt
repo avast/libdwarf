@@ -8,6 +8,8 @@ if (NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE STRING "Choose the type of build." FORCE)
 endif()
 
+option(LIBDWARF_INSTALL_TO_UNITTESTS "Install libraries to 'bin/unit-tests' tests (Windows only)." OFF)
+
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 
 add_subdirectory(libdwarf)
