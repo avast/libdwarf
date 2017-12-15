@@ -65,6 +65,7 @@ set(LIBDWARF_SOURCES
 if(NOT TARGET libdwarf)
 
 	add_library(libdwarf SHARED ${LIBDWARF_SOURCES})
+	set_target_properties(libdwarf PROPERTIES OUTPUT_NAME "retdec-libdwarf")
 	target_link_libraries(libdwarf libelf)
 	target_include_directories(libdwarf SYSTEM PUBLIC ${PROJECT_SOURCE_DIR} .)
 	if(MSVC)
