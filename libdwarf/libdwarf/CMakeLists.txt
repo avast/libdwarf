@@ -1,4 +1,3 @@
-
 set(LIBDWARF_SOURCES
 	common.c
 	dwarf_abbrev.c
@@ -62,18 +61,14 @@ set(LIBDWARF_SOURCES
 	pro_weaks.c
 )
 
-if(NOT TARGET libdwarf)
-
-	add_library(libdwarf SHARED ${LIBDWARF_SOURCES})
-	set_target_properties(libdwarf PROPERTIES OUTPUT_NAME "retdec-libdwarf")
-	target_link_libraries(libdwarf libelf)
-	target_include_directories(libdwarf SYSTEM PUBLIC ${PROJECT_SOURCE_DIR} .)
-	if(MSVC)
-		set_target_properties(libdwarf PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-	endif()
-	install(TARGETS libdwarf
-		LIBRARY DESTINATION lib
-		RUNTIME DESTINATION bin
-	)
-
+add_library(libdwarf SHARED ${LIBDWARF_SOURCES})
+set_target_properties(libdwarf PROPERTIES OUTPUT_NAME "retdec-libdwarf")
+target_link_libraries(libdwarf libelf)
+target_include_directories(libdwarf SYSTEM PUBLIC ${PROJECT_SOURCE_DIR} .)
+if(MSVC)
+	set_target_properties(libdwarf PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
 endif()
+install(TARGETS libdwarf
+	LIBRARY DESTINATION lib
+	RUNTIME DESTINATION bin
+)
