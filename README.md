@@ -9,7 +9,7 @@ Target named `libdwarf` is exposed. It can be used as follows:
 target_link_libraries(project-that-needs-libdwarf libdwarf)
 ```
 
-Because of the LGPL license used in both `libdwarf` and `libelf` projects, the libraries are build as shared (on Linux) or dynamically linked (on Windows).
+Because of the LGPL license used in both `libdwarf` and `libelf`, the libraries are build as shared (on Linux) or dynamically linked (on Windows).
 
 ## Status
 
