@@ -13,7 +13,7 @@ Because of the LGPL license used in both `libdwarf` and `libelf`, the libraries 
 
 ## Status
 
-The repository is meant to be used by the `retdec` project. Versions of both `libdwarf` and `libelf` used here are pretty old. Both are also used pre-configured. In the future we could do some of the following:
+The repository is meant to be used by the [RetDec](https://github.com/avast-tl/retdec) project. Versions of both `libdwarf` and `libelf` used here are pretty old. Both are also used pre-configured. In the future we could do some of the following:
 * Update both libraries.
 * Run proper configuration from CMake.
 * Use official repositories instead of this meta repository.
